@@ -2,11 +2,31 @@
 Input: a List of integers
 Returns: a List of integers
 '''
+def product_helper(arr):
+    product = 1
+    for i in arr:
+        product *= i
+    
+    return product
+
 def product_of_all_other_numbers(arr):
     # Your code here
-
-    pass
-
+    new_arr = [];
+    combined = None
+    counter = 0
+    
+    if len(arr) <= 2:
+        arr.insert(0, arr.pop())
+        return arr
+    
+    while counter < len(arr):
+        left = arr[:counter]
+        right = arr[counter+1:]
+        combined = left + right
+        new_arr.append(product_helper(combined))
+        counter += 1  
+        
+    return new_arr
 
 if __name__ == '__main__':
     # Use the main function to test your implementation
